@@ -5,7 +5,6 @@ import (
 	"errors"
 	"io"
 	"io/fs"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -88,6 +87,6 @@ func writeInitialTemplate(path string) error {
 	s := `{
     "branch_ignores":[]
 }`
-	err := ioutil.WriteFile(path, []byte(s), fs.ModePerm)
+	err := os.WriteFile(path, []byte(s), os.ModePerm)
 	return err
 }
