@@ -48,6 +48,6 @@ git branch で無視したいもの設定
 
 ```
 {
-    "ignores":["cherry-pick", "revert-"]
+    "branch_ignores":["cherry-pick", "revert-"]
 }
 ```
