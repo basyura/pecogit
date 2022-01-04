@@ -9,7 +9,6 @@ function peco_insert_selected_git_files(){
     CURSOR=0
     zle reset-prompt
 }
-
 zle -N peco_insert_selected_git_files
 bindkey "^x^l" peco_insert_selected_git_files
 
