@@ -41,7 +41,7 @@ func Initialize(args []string) (conf *Config, err error) {
 		return nil, err
 	}
 
-	dir := filepath.Join(home, ".config", "gitbranch")
+	dir := filepath.Join(home, ".config", "pecogit")
 	path := filepath.Join(dir, "config.json")
 	if info, err := os.Stat(dir); err != nil {
 		if os.IsNotExist(err) {
