@@ -1,6 +1,6 @@
 # README
 
-Windows Terminal + Git for Windows SDK + zsh で git コマンドの結果を peco りたいけど、画面が崩れてキー入力も受けない時があるので間に挟んで見る。  
+Windows Terminal + Git for Windows SDK + zsh で git コマンドの結果を peco りたいけど、画面が崩れてキー入力も受けない時があるので間に挟んでみる。  
 ## .zshrc
 
 ```zsh
@@ -33,7 +33,8 @@ bindkey '^x^a' peco-select-branch
 
 ## git branch
 
-ブランチ数を制限するためのオプション `-n` を独自追加。
+* ブランチ名が英数のみのものだけを対象とする (全角文字は除去)
+* ブランチ数を制限するためのオプション `-n` を独自追加
 
 ```
 pecogit branch -a --sort=-authordate -n 1000
