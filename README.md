@@ -31,6 +31,14 @@ zle -N peco-select-branch
 bindkey '^x^a' peco-select-branch
 ```
 
+## git branch
+
+ブランチ数を制限するためのオプション `-n` を独自追加。
+
+```
+pecogit branch -a --sort=-authordate -n 1000
+```
+
 ## config
 
 `~/.config/pecogit/config.json`  
