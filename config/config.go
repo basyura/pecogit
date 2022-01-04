@@ -12,14 +12,14 @@ import (
 )
 
 type Config struct {
-	Args    []string
-	Ignores []string `json:"ignores"`
-	Command string
+	Args          []string
+	BranchIgnores []string `json:"branch_ignores"`
+	Command       string
 }
 
 func (c *Config) IsValid(line string) bool {
 
-	for _, s := range c.Ignores {
+	for _, s := range c.BranchIgnores {
 		if strings.Contains(line, s) {
 			return false
 		}
@@ -42,16 +42,23 @@ func Initialize(args []string) (conf *Config, err error) {
 	}
 
 	dir := filepath.Join(home, ".config", "pecogit")
-	path := filepath.Join(dir, "config.json")
 	if info, err := os.Stat(dir); err != nil {
 		if os.IsNotExist(err) {
 			if err := os.MkdirAll(dir, fs.ModePerm); err != nil {
 				return nil, err
 			}
+		} else if !info.IsDir() {
+			return nil, err
+		}
+	}
+
+	path := filepath.Join(dir, "config.json")
+	if _, err := os.Stat(path); err != nil {
+		if os.IsNotExist(err) {
 			if err := writeInitialTemplate(path); err != nil {
 				return nil, err
 			}
-		} else if !info.IsDir() {
+		} else {
 			return nil, err
 		}
 	}
@@ -79,7 +86,7 @@ func Initialize(args []string) (conf *Config, err error) {
 
 func writeInitialTemplate(path string) error {
 	s := `{
-    "ignores":[]
+    "branch_ignores":[]
 }`
 	err := ioutil.WriteFile(path, []byte(s), fs.ModePerm)
 	return err
